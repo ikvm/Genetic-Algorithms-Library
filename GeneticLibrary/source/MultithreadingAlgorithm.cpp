@@ -1,34 +1,34 @@
 
 /*! \file MultithreadingAlgorithm.cpp
-    \brief This file implements methods of abstract class that represents multithreaded genetic algorithms.
+\brief This file implements methods of abstract class that represents multithreaded genetic algorithms.
 */
 
 /*
- * 
- * website: N/A
- * contact: kataklinger@gmail.com
- *
- */
+* 
+* website: N/A
+* contact: kataklinger@gmail.com
+*
+*/
 
 /*
- * Genetic Algorithms Library
- * Copyright (C) 2007-2012 Mladen Jankovic
- * 
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- *
- */
+* Genetic Algorithms Library
+* Copyright (C) 2007-2012 Mladen Jankovic
+* 
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public License
+* as published by the Free Software Foundation; either version 2
+* of the License, or (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*
+*/
 
 #include "MultithreadingAlgorithm.h"
 
@@ -58,7 +58,8 @@ namespace Algorithm
 
 		// initialize of semaphores for synchronization of worker threads
 		MakeSemaphore( _workerForkSync, _numberOfThreads - 1, 0 );
-		MakeEvent( _workerJoinSync, 0 ); 
+		MakeSemaphore( _workerJoinSync, _numberOfThreads - 1, 0 );
+		MakeEvent( _controlSync, 0 ); 
 	}
 
 	// Frees resources
@@ -79,7 +80,8 @@ namespace Algorithm
 
 		// free resources used by synchronization
 		DeleteSemaphore( _workerForkSync );
-		DeleteEvent( _workerJoinSync );
+		DeleteSemaphore( _workerJoinSync );
+		DeleteEvent( _controlSync );
 	}
 
 	// Sets new parameters for algorithm
@@ -106,6 +108,7 @@ namespace Algorithm
 			_parametersChange = true;
 
 			// release working threads
+			_workersThreadIn = oldCount;
 			UnlockSemaphore( _workerForkSync, oldCount );
 
 			// wait for working threads to be closed
@@ -117,9 +120,11 @@ namespace Algorithm
 
 		// remove synchronization objects
 		DeleteSemaphore( _workerForkSync );
+		DeleteSemaphore( _workerJoinSync );
 
 		// make new synchronization object
 		MakeSemaphore( _workerForkSync, newCount, 0 );
+		MakeSemaphore( _workerJoinSync, newCount, 0 );
 
 		// new thread pool
 		GaThread** newThreads = new GaThread*[ newCount + 1 ];
@@ -167,7 +172,7 @@ namespace Algorithm
 		ReleaseStateChange();
 	}
 
-	
+
 	// Waits for threads to finish
 	bool GaMultithreadingAlgorithm::WaitForThreads()
 	{
@@ -190,14 +195,14 @@ namespace Algorithm
 
 			if( _state == GAS_RUNNING )
 				// execute control step before workers
-				BeforeWorkers();
+					BeforeWorkers();
 
 			// release working threads
 			_workersThreadIn = count;
 			UnlockSemaphore( _workerForkSync, count );
 
 			// wait for working threads to finish the job
-			WaitForEvent( _workerJoinSync );
+			WaitForEvent( _controlSync );
 
 			// still running?
 			if( _state != GAS_RUNNING )
@@ -238,22 +243,25 @@ namespace Algorithm
 			if( _parametersChange )
 				break;
 
-			// thread should be stopped beacuse the algorithm is stopped
-			if( _state != GAS_RUNNING )
-			{
-				// last worker thread notifies control thread that work step is done
-				if( !ATOMIC_DEC( _workersThreadIn ) )
-					SignalEvent( _workerJoinSync );
+			// execute work step if the algorithm is not stopped
+			if( _state == GAS_RUNNING )
+				WorkStep( workerId );
 
-				break;
-			}
+			// only the last worker will releast the others to continue
+			bool last = !ATOMIC_DEC( _workersThreadIn );
+			if( last )
+				UnlockSemaphore( _workerJoinSync,  _numberOfThreads - 1 );
 
-			// execute work step
-			WorkStep( workerId );
+			// wait for the last worker to reach this point before notifying control thread
+			LockSemaphore( _workerJoinSync );
 
 			// last worker thread notifies control thread that work step is done
-			if( !ATOMIC_DEC( _workersThreadIn ) )
-				SignalEvent( _workerJoinSync );
+			if( last )
+				SignalEvent( _controlSync );
+
+			// algorithm is stopped
+			if( _state != GAS_RUNNING )
+				break;
 		}
 	}
 

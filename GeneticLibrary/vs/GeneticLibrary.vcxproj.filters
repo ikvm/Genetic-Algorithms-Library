@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{3de99ea5-1818-44c0-b894-b160a6720dd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Threading">
+      <UniqueIdentifier>{866a3417-a155-43c6-b55b-1e7e5f2ea12d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Observing">
+      <UniqueIdentifier>{491b1fa2-fc0b-4da2-9413-579b4e82e7ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Population">
+      <UniqueIdentifier>{2112dac6-4b1c-4903-8d0d-40efee702636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Population\Selection">
+      <UniqueIdentifier>{93f00ae7-553b-4541-98ba-7b52436982d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Population\Scaling">
+      <UniqueIdentifier>{bfc5f4dc-b071-44ad-b38c-1e0445806781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Population\Replacement">
+      <UniqueIdentifier>{439922ab-0d18-4c98-b865-1bb3d80d7fe1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Population\Coupling">
+      <UniqueIdentifier>{ab82c096-dfb8-427d-88f3-989703242a2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chromosome">
+      <UniqueIdentifier>{9c835e18-dd1c-413d-baf6-c3df2b309f59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chromosome\Representation">
+      <UniqueIdentifier>{ae95f4cf-09d9-42fc-aaad-b5622609cb78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chromosome\Mutation">
+      <UniqueIdentifier>{59e7c7ff-2755-445b-8c96-096ad87cff63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chromosome\Crossover">
+      <UniqueIdentifier>{0cc421dd-9830-4ad7-a88d-f3227b510218}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithm">
+      <UniqueIdentifier>{fb46003d-4ad5-40de-8f93-f3f3782787c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithm\StopCriterias">
+      <UniqueIdentifier>{6936b8e9-8ce5-4850-a47f-13730b1015d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithm\SimpleAlgorithms">
+      <UniqueIdentifier>{6dc07cde-998e-435f-bc9a-bd41829bd807}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\Initialization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Random.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Statistics.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Threading.cpp">
+      <Filter>Source Files\Threading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Observing.cpp">
+      <Filter>Source Files\Observing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Population.cpp">
+      <Filter>Source Files\Population</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\PopulationOperations.cpp">
+      <Filter>Source Files\Population</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\SelectionOperations.cpp">
+      <Filter>Source Files\Population\Selection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ScalingOperations.cpp">
+      <Filter>Source Files\Population\Scaling</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ReplacementOperations.cpp">
+      <Filter>Source Files\Population\Replacement</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\CouplingOperations.cpp">
+      <Filter>Source Files\Population\Coupling</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Chromosome.cpp">
+      <Filter>Source Files\Chromosome</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\BinaryChromosome.cpp">
+      <Filter>Source Files\Chromosome\Representation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\MutationOperations.cpp">
+      <Filter>Source Files\Chromosome\Mutation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\CrossoverOperations.cpp">
+      <Filter>Source Files\Chromosome\Crossover</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Algorithm.cpp">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\MultithreadingAlgorithm.cpp">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\StopCriterias.cpp">
+      <Filter>Source Files\Algorithm\StopCriterias</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\IncrementalAlgorithm.cpp">
+      <Filter>Source Files\Algorithm\SimpleAlgorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\SimpleAlgorithm.cpp">
+      <Filter>Source Files\Algorithm\SimpleAlgorithms</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\Initialization.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Platform.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Catalogue.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\FPEqual.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\GlobalRandomGenerator.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Operation.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Random.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\SmartPtr.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Statistics.h">
+      <Filter>Source Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Threading.h">
+      <Filter>Source Files\Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Observing.h">
+      <Filter>Source Files\Observing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Population.h">
+      <Filter>Source Files\Population</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\PopulationOperations.h">
+      <Filter>Source Files\Population</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\SortedGroup.h">
+      <Filter>Source Files\Population</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\SortedGroupType.h">
+      <Filter>Source Files\Population</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\SelectionOperations.h">
+      <Filter>Source Files\Population\Selection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ScalingOperations.h">
+      <Filter>Source Files\Population\Scaling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ReplacementOperations.h">
+      <Filter>Source Files\Population\Replacement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\CouplingOperations.h">
+      <Filter>Source Files\Population\Coupling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Chromosome.h">
+      <Filter>Source Files\Chromosome</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ChromosomeOperations.h">
+      <Filter>Source Files\Chromosome</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\FitnessComparators.h">
+      <Filter>Source Files\Chromosome</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\BinaryChromosome.h">
+      <Filter>Source Files\Chromosome\Representation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\DomainChromosome.h">
+      <Filter>Source Files\Chromosome\Representation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\MultiValueChromosome.h">
+      <Filter>Source Files\Chromosome\Representation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\RepresentationInterfaces.h">
+      <Filter>Source Files\Chromosome\Representation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\SingleValueChromosome.h">
+      <Filter>Source Files\Chromosome\Representation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ValueSets.h">
+      <Filter>Source Files\Chromosome\Representation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\MutationOperations.h">
+      <Filter>Source Files\Chromosome\Mutation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\CrossoverOperations.h">
+      <Filter>Source Files\Chromosome\Crossover</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Algorithm.h">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\AlgorithmOperations.h">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\AlgorithmState.h">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\MultithreadingAlgorithm.h">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\StopCriterias.h">
+      <Filter>Source Files\Algorithm\StopCriterias</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\IncrementalAlgorithm.h">
+      <Filter>Source Files\Algorithm\SimpleAlgorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\SimpleAlgorithm.h">
+      <Filter>Source Files\Algorithm\SimpleAlgorithms</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

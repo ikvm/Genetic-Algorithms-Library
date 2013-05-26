@@ -90,8 +90,11 @@ namespace Algorithm
 		/// <summary>Object for synchronization of working step start.</summary>
 		SysSemaphoreObject _workerForkSync;
 
+		/// <summary>Object for synchronization of working step finish.</summary>
+		SysSemaphoreObject _workerJoinSync;
+
 		/// <summary>Object for synchronization of worker threads with control thread after end of work step</summary>
-		SysEventObject _workerJoinSync;
+		SysEventObject _controlSync;
 
 		/// <summary>Number of workers thread currently executing working section of code.</summary>
 		int _workersThreadIn;
