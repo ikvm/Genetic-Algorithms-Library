@@ -96,8 +96,11 @@ namespace Algorithm
 		/// <summary>Object for synchronization of worker threads with control thread after end of work step</summary>
 		SysEventObject _controlSync;
 
-		/// <summary>Number of workers thread currently executing working section of code.</summary>
+		/// <summary>Number of worker threads currently executing working section of code.</summary>
 		int _workersThreadIn;
+
+		/// <summary>Number of worker threads that have to exit working section before control thread can continue execution.</summary>
+		int _workersThreadOut;
 
 		/// <summary>This flag indicates that user has changed some aspect of the algorithm, but algorithm didn't refresh its control structures</summary>
 		bool _parametersChange;

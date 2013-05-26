@@ -108,7 +108,7 @@ namespace Algorithm
 			_parametersChange = true;
 
 			// release working threads
-			_workersThreadIn = oldCount;
+			_workersThreadOut = _workersThreadIn = oldCount;
 			UnlockSemaphore( _workerForkSync, oldCount );
 
 			// wait for working threads to be closed
@@ -198,7 +198,7 @@ namespace Algorithm
 					BeforeWorkers();
 
 			// release working threads
-			_workersThreadIn = count;
+			_workersThreadOut = _workersThreadIn = count;
 			UnlockSemaphore( _workerForkSync, count );
 
 			// wait for working threads to finish the job
@@ -248,15 +248,14 @@ namespace Algorithm
 				WorkStep( workerId );
 
 			// only the last worker will releast the others to continue
-			bool last = !ATOMIC_DEC( _workersThreadIn );
-			if( last )
+			if( !ATOMIC_DEC( _workersThreadIn ) )
 				UnlockSemaphore( _workerJoinSync,  _numberOfThreads - 1 );
 
 			// wait for the last worker to reach this point before notifying control thread
 			LockSemaphore( _workerJoinSync );
 
-			// last worker thread notifies control thread that work step is done
-			if( last )
+			// the last worker thread to exit notifies control thread that work step is done
+			if( !ATOMIC_DEC( _workersThreadOut ) )
 				SignalEvent( _controlSync );
 
 			// algorithm is stopped
