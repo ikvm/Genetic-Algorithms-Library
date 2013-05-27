@@ -807,7 +807,7 @@ namespace Population
 				RefreshWorstGroup();
 			}
 
-			if( !( groups & ( GASGT_BEST | GASGT_BEST ) ) )
+			if( !( groups & ( GASGT_BEST | GASGT_WORST ) ) )
 			{
 				// insert new chromosome in best or worst chromsome group if needed
 				_best.Add( index );
