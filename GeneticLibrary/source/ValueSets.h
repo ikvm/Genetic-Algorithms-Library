@@ -717,13 +717,13 @@ namespace Chromosome
 				// start of search
 				int i = this->_viceVersa ? 2 : 0;
 				int ret = i + 1;
-				T diff = value < *bounds[ ret ] ? *bounds[ ret ] - value : *bounds[ ret ] - value;
+				T diff = value < *bounds[ ret ] ? *bounds[ ret ] - value : value - *bounds[ ret ];
 
 				// find closes bounds
 				for( ; i >= 0; i-- )
 				{
 					// calculate distance
-					T d = value > *bounds[ i ] ? value - *bounds[ i ] : value - *bounds[ i ];
+					T d = value > *bounds[ i ] ? value - *bounds[ i ] : *bounds[ i ] - value;
 
 					// closer
 					if( d < diff )
